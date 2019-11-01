@@ -1,0 +1,37 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: python-web
+  namespace: dev
+spec:
+  template:
+    metadata:
+      labels:
+        app: python-web
+    spec:
+      containers:
+      - image: danielma911/python-web:<BUILD_TAG>
+        imagePullPolicy: IfNotPresent
+        name: python-web
+ 	ports:
+        - containerPort: 8080
+        env:
+        - name: branch
+          value: <BRANCH_NAME>
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: web-svc
+  namespace: dev
+  labels:
+    app: web
+spec:
+  selector:
+    app: python-web
+  type: NodePort
+  ports:
+  - name: web
+    port: 8080
+    targetPort: web
+    nodePort: 31889
