@@ -10,22 +10,23 @@ spec:
         app: python-web
     spec:
       containers:
-      - image: danielma911/python-web:<BUILD_TAG>
+      - name: python-web
+        image: danielma911/python-web:<BUILD_TAG>
         imagePullPolicy: IfNotPresent
-        name: python-web
- 	ports:
+        ports:
         - containerPort: 8080
         env:
         - name: branch
           value: <BRANCH_NAME>
 
+---
 apiVersion: v1
 kind: Service
 metadata:
   name: web-svc
   namespace: dev
   labels:
-    app: web
+    app: python-web
 spec:
   selector:
     app: python-web
@@ -33,5 +34,5 @@ spec:
   ports:
   - name: web
     port: 8080
-    targetPort: web
+    targetPort: 8080
     nodePort: 31889
