@@ -11,7 +11,7 @@ spec:
     spec:
       containers:
       - name: python-web
-        image: danielma911/python-web:<BUILD_TAG>
+        image: danielma911/python-web-local:<BUILD_TAG>
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 8080
