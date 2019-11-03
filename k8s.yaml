@@ -2,7 +2,7 @@ apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
   name: python-web
-  namespace: dev
+  namespace: <namespace>
 spec:
   template:
     metadata:
@@ -24,7 +24,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: web-svc
-  namespace: dev
+  namespace: <namespace>
   labels:
     app: python-web
 spec:
